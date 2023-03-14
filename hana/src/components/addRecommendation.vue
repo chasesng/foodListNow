@@ -24,8 +24,8 @@
         </div>
 
         <div class="f cntr" style="width:90vw;justify-content: center; margin-bottom:25px">
-            <label class="wt">Your Name (optional)</label>
-            <input type="text" class="wt" style="background:transparent;width:50vw;border-bottom:1px solid white" placeholder="Anonymous" ref="rec">
+            <label class="wt">Your Name</label>
+            <input type="text" class="wt" style="background:transparent;width:50vw;border-bottom:1px solid white" placeholder="Anonymous" value="Anonymous" ref="rec">
         </div>
 
         <div class="f cntr" style="width:90vw;justify-content: center; margin-bottom:25px">

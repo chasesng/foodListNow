@@ -40,6 +40,8 @@
     <p class="wt l p6 cntr" style="opacity:.6">Send in your food recommendations to expand the list</p>
     <p class="wt l p6 cntr" style="opacity:.6">Click on the [+] button at the bottom of your screen</p>
   </div>
+  <p class="ibn b p7" style="color:gold">Click on an eatery to view more details...</p>
+
   <div class="cntr f" style="width:100vw;justify-content:center">
     <label class="wt" for="foodCategory">Category</label>
     <select id="foodCategory" class="inpClear ft l wt" ref="foodcategory" v-model="selectedCulture" style="width:50vw">
@@ -53,17 +55,8 @@
 
   <p class="wt p6 mt25">{{ selectedCulture }}</p>
 
-  <!-- <div v-for="(place , index) in places.filter(places => foodTypes.includes(place.culture))" :key="index">
-  {{ place.locationName }}
-  </div> -->
-  <!-- HERE
-  <div v-for="(place, index) in places.filter(place => place.locationName === 'Huevos')" :key="index">
-    <img :src="getImgUrl(place.imgPath)" v-bind:alt="place.locationName">
-
-  </div>
-  ABOVE -->
   <div v-for="(place, index) in places.filter(place => foodTypes.includes(place.culture) && place.published === true)" :key="index" style="overflow:hidden;">
-  <div @click="showDetails(index)" id="placeEa" :class="{ 'selected': selectedIndex === index }" style="width:95vw;height:fit-content;border:1px solid white;justify-content: space-between;margin-bottom:5%;overflow:hidden;" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
+  <div @click="showDetails(index)" id="placeEa" :class="{ 'selected': selectedIndex === index }" style="width:95vw;height:fit-content;border:1px solid white;justify-content: space-between;margin-bottom:5%;overflow:hidden;animation-duration:.2s" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
     <div class="ib" style="width:50%">
       <p style="text-align:left;margin-left:3%" class="p8 wt">{{ place.culture }}</p>
     <p style="text-align:left;margin-left:3%" class="p6 wt">{{ place.locationName }}</p>
