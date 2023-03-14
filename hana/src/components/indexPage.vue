@@ -4,8 +4,7 @@
 
   <div class="fade-on-scroll cntr br10 ibn p6 ib"   :style="{ opacity: 1 - (scrollPosition / fadeThreshold) }" style="width:100vw;margin-bottom:10vh;margin-top:5%;overflow: hidden;background: linear-gradient(0deg, rgba(0,0,0,1) 18%, rgba(181,181,181,1) 89%);" >
 
-    <p class="wt ft cntr" style="font-size:80px;height:1vh;margin-top:15%;color:black">Food <span style="color:whitesmoke;font-size:60px">Here</span></p>
- 
+    <p class="wt ft cntr" style="font-size:80px;height:1vh;margin-top:15%;color:black">Food <span style="color:whitesmoke;font-size:60px;">Here</span></p>
 
     <div class="custom-shape-divider-bottom-1678547880">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -20,13 +19,16 @@
     <p class="wt p8 mt10">This is part of my 'app a day for a week' personal project. Contact me for features you want added to this site if any.</p>
   </div>
 
-  <div class="cntr ib w1k animate__animated animate__slideInUp mt50" style="width:100vw">
-    <p class="wt l p6 cntr" style="width:90vw">
+  <img src="../assets/places/atlas.jpg" style="max-width:100vw;opacity:.7;margin-bottom: 2vh">
+  <p class="wt p8" style="opacity:.5;text-align:center;margin-top:-4%;margin-bottom:2vh">ATLAS Singapore</p>
+
+  <div class="cntr ib w1k animate__animated animate__slideInUp mt50" style="width:100vw;">
+    <p class="wt l p7 cntr" style="width:90vw;opacity:.8">
       I wrote this mobile site to showcase a list of Singapore's food places I've found over time.
     </p>
     <br/>
-    <p class="wt l p6 cntr" style="width:90vw">
-      Take my reviews with a grain of salt.  </p>    
+    <p class="wt l p8 cntr" style="width:90vw;opacity:.6">
+      Take my reviews with a grain of salt, I'm no chef.  </p>    
     
 
   </div>
@@ -35,8 +37,8 @@
     </div>
 
   <div class="cntr ib mt50" style="width:100vw;margin-top:6%;margin-bottom:10%">
-    <p class="wt l p6 cntr">This list consists of places from many different cultures.</p>
     <p class="wt l p6 cntr" style="opacity:.6">Send in your food recommendations to expand the list</p>
+    <p class="wt l p6 cntr" style="opacity:.6">Click on the [+] button at the bottom of your screen</p>
   </div>
   <div class="cntr f" style="width:100vw;justify-content:center">
     <label class="wt" for="foodCategory">Category</label>
@@ -54,21 +56,26 @@
   <!-- <div v-for="(place , index) in places.filter(places => foodTypes.includes(place.culture))" :key="index">
   {{ place.locationName }}
   </div> -->
+  <!-- HERE
+  <div v-for="(place, index) in places.filter(place => place.locationName === 'Huevos')" :key="index">
+    <img :src="getImgUrl(place.imgPath)" v-bind:alt="place.locationName">
 
-  <div v-for="(place, index) in places.filter(place => foodTypes.includes(place.culture) && place.published === true)" :key="index" style="overflow:hidden">
-  <div @click="showDetails(index)" id="placeEa" :class="{ 'selected': selectedIndex === index }" style="width:95vw;height:fit-content;border:1px solid white;justify-content: space-between;margin-bottom:2%;overflow:hidden;" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
+  </div>
+  ABOVE -->
+  <div v-for="(place, index) in places.filter(place => foodTypes.includes(place.culture) && place.published === true)" :key="index" style="overflow:hidden;">
+  <div @click="showDetails(index)" id="placeEa" :class="{ 'selected': selectedIndex === index }" style="width:95vw;height:fit-content;border:1px solid white;justify-content: space-between;margin-bottom:5%;overflow:hidden;" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
     <div class="ib" style="width:50%">
       <p style="text-align:left;margin-left:3%" class="p8 wt">{{ place.culture }}</p>
     <p style="text-align:left;margin-left:3%" class="p6 wt">{{ place.locationName }}</p>
     <p style="text-align:left;margin-left:3%" class="p8 wt">{{ ratingStars(place.rating) }} ({{ place.rating }})</p>
     <p style="text-align:left;opacity:.6;margin-left:3%" class="p8 wt" >{{ place.location }}</p>
     </div>
-    <div style="width:35vw;height:20vh;float:right;overflow:hidden">
-      <img :src="place.imgPath" :alt="place.locationName" class="br10" style="height:100%;width:100%;max-height:100%;object-fit:fill">
+    <div style="width:33vw;height:16vh;float:right;overflow:hidden">
+      <img :src="getImgUrl(place.imgPath)" v-bind:alt="place.imgPath" class="br10" style="height:100%;width:100%;max-height:100%;object-fit:fill">
     </div>
   </div>
   
-  <div v-if="selectedIndex === index" style="width:95vw;height:fit-content;border:.5px solid blue;border-top:none;margin-bottom:2%;animation-duration:.3s;overflow:hidden" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
+  <div v-if="selectedIndex === index" style="width:95vw;height:fit-content;border:.5px solid #e8e5ff;border-top:none;margin-bottom:2%;animation-duration:.3s;overflow:hidden" class="cntr br10 p6 pd5 f eaPlace animate__animated animate__slideInLeft">
     <div class="ib">
       <p class="wt p8 b w100 mt10" style="text-align:left;margin-left:3%">Description</p>
       <p style="text-align:left;margin-left:3%" class="p8 wt">{{ place.description }}</p>
@@ -110,8 +117,8 @@ export default {
 
 
     return {
-      foodTypes: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican'],
-      optionsList: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican'],
+      foodTypes: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
+      optionsList: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
       selectedIndex: -1,
       scrollPosition: -300,
       fadeThreshold: 700,
@@ -146,6 +153,9 @@ export default {
       
       }
     },
+    getImgUrl(it) {
+      return require('../assets/places/'+String(it))
+  },
     showDetails(index) {
     if (this.selectedIndex === index) {
       this.selectedIndex = -1;
