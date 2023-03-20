@@ -28,7 +28,7 @@
     </p>
     <br/>
     <p class="wt l p8 cntr" style="width:90vw;opacity:.6">
-      Take my reviews with a grain of salt, I'm no chef.  </p>    
+      Take my reviews with a grain of salt...  </p>    
     
 
   </div>
@@ -84,6 +84,9 @@
       <div class="wt p8" style="text-align:left;margin-left:3%" v-for="(item, index) in String(place.recommendations).split(',')" :key="index">
       <p>- {{ item }}</p>
       </div>
+
+      <p class="wt p8 b w100 mt10" style="text-align:left;margin-left:3%" v-if="place.rec != 'Anonymous' && place.rec != ''">Recommended By: {{ place.rec }}</p>
+
     </div>
   </div>
 
@@ -110,8 +113,8 @@ export default {
 
 
     return {
-      foodTypes: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
-      optionsList: ['All','Chinese', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
+      foodTypes: ['All','Chinese', 'Western', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
+      optionsList: ['All','Chinese', 'Western', 'European', 'Italian', 'French', 'Japanese', 'Korean', 'Mexican', 'Fusion'],
       selectedIndex: -1,
       scrollPosition: -300,
       fadeThreshold: 700,
@@ -234,7 +237,8 @@ export default {
           recommendations: doc.data().recommendations,
           review: doc.data().review,
           imgPath: doc.data().imgPath,
-          published: doc.data().published
+          published: doc.data().published,
+          rec: doc.data().rec
 
 
         }
